@@ -1,2 +1,2 @@
 # Portfolio
-A Few projects : https://christosfranco.github.io/Data-Science-Portfolio/
+A Few projects visually and decriptively presented in a website format: https://christosfranco.github.io/Data-Science-Portfolio/
