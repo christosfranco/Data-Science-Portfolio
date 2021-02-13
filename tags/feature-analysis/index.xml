@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>feature analysis on Main Page</title>
+    <link>https://christosfranco.github.io/Data-Science-Portfolio/tags/feature-analysis/</link>
+    <description>Recent content in feature analysis on Main Page</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 12 Feb 2021 11:25:05 -0400</lastBuildDate><atom:link href="https://christosfranco.github.io/Data-Science-Portfolio/tags/feature-analysis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PCA and classifications</title>
+      <link>https://christosfranco.github.io/Data-Science-Portfolio/post/pca/</link>
+      <pubDate>Fri, 12 Feb 2021 11:25:05 -0400</pubDate>
+      
+      <guid>https://christosfranco.github.io/Data-Science-Portfolio/post/pca/</guid>
+      <description>Principal component analysis: Some few tool to analyze the specific impact of each feature, and their impact on the label. The tool is applied to a dataset of flowers, where we try to classify which features of the plant correspond to the specific flower.
+PCA We only have 4 features in this dataset, so PCA will not be as effective in emiting unneeded features. But if we would have had a far larger dataset with many more features, the calculations we would normally have to do can be widely reduced by the use of PCA.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,18 +1,54 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on My blog</title>
-    <link>https://christosfranco.github.io/Projects-Portfolio/tags/</link>
-    <description>Recent content in Tags on My blog</description>
+    <title>Tags on Main Page</title>
+    <link>https://christosfranco.github.io/Data-Science-Portfolio/tags/</link>
+    <description>Recent content in Tags on Main Page</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Apr 2017 11:14:48 -0400</lastBuildDate><atom:link href="https://christosfranco.github.io/Projects-Portfolio/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Feb 2021 11:25:05 -0400</lastBuildDate><atom:link href="https://christosfranco.github.io/Data-Science-Portfolio/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>scene</title>
-      <link>https://christosfranco.github.io/Projects-Portfolio/tags/scene/</link>
-      <pubDate>Wed, 12 Apr 2017 11:14:48 -0400</pubDate>
+      <title>feature analysis</title>
+      <link>https://christosfranco.github.io/Data-Science-Portfolio/tags/feature-analysis/</link>
+      <pubDate>Fri, 12 Feb 2021 11:25:05 -0400</pubDate>
       
-      <guid>https://christosfranco.github.io/Projects-Portfolio/tags/scene/</guid>
+      <guid>https://christosfranco.github.io/Data-Science-Portfolio/tags/feature-analysis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>machine learning</title>
+      <link>https://christosfranco.github.io/Data-Science-Portfolio/tags/machine-learning/</link>
+      <pubDate>Fri, 12 Feb 2021 11:25:05 -0400</pubDate>
+      
+      <guid>https://christosfranco.github.io/Data-Science-Portfolio/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>neural network</title>
+      <link>https://christosfranco.github.io/Data-Science-Portfolio/tags/neural-network/</link>
+      <pubDate>Fri, 12 Feb 2021 11:25:05 -0400</pubDate>
+      
+      <guid>https://christosfranco.github.io/Data-Science-Portfolio/tags/neural-network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>processing</title>
+      <link>https://christosfranco.github.io/Data-Science-Portfolio/tags/processing/</link>
+      <pubDate>Fri, 12 Feb 2021 11:25:05 -0400</pubDate>
+      
+      <guid>https://christosfranco.github.io/Data-Science-Portfolio/tags/processing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sound</title>
+      <link>https://christosfranco.github.io/Data-Science-Portfolio/tags/sound/</link>
+      <pubDate>Fri, 12 Feb 2021 11:25:05 -0400</pubDate>
+      
+      <guid>https://christosfranco.github.io/Data-Science-Portfolio/tags/sound/</guid>
       <description></description>
     </item>
     

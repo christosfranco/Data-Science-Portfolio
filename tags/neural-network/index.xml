@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>neural network on Main Page</title>
+    <link>https://christosfranco.github.io/Data-Science-Portfolio/tags/neural-network/</link>
+    <description>Recent content in neural network on Main Page</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 12 Feb 2021 11:25:05 -0400</lastBuildDate><atom:link href="https://christosfranco.github.io/Data-Science-Portfolio/tags/neural-network/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Urban Sound Processing and Neural Network Model</title>
+      <link>https://christosfranco.github.io/Data-Science-Portfolio/post/soundnn/</link>
+      <pubDate>Fri, 12 Feb 2021 11:25:05 -0400</pubDate>
+      
+      <guid>https://christosfranco.github.io/Data-Science-Portfolio/post/soundnn/</guid>
+      <description>Link to github repo Link to kaggle repo</description>
+    </item>
+    
+  </channel>
+</rss>

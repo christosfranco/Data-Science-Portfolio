@@ -1,18 +1,128 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
-  <sitemap>
-    <loc>https://christosfranco.github.io/Projects-Portfolio/en/sitemap.xml</loc>
-    
-      <lastmod>2017-04-14T11:25:05-04:00</lastmod>
-    
-  </sitemap>
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/</loc>
+    <lastmod>2021-02-12T11:25:05-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
   
-  <sitemap>
-    <loc>https://christosfranco.github.io/Projects-Portfolio/fr/sitemap.xml</loc>
-    
-      <lastmod>2017-04-09T10:58:08-04:00</lastmod>
-    
-  </sitemap>
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/post/dataprocessingsql/</loc>
+    <lastmod>2021-02-12T11:25:05-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
   
-</sitemapindex>
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/tags/feature-analysis/</loc>
+    <lastmod>2021-02-12T11:25:05-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/post/linearreg/</loc>
+    <lastmod>2021-02-12T11:25:05-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/tags/machine-learning/</loc>
+    <lastmod>2021-02-12T11:25:05-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/post/chapter-1/</loc>
+    <lastmod>2021-02-12T11:25:05-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/tags/neural-network/</loc>
+    <lastmod>2021-02-12T11:25:05-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/post/pca/</loc>
+    <lastmod>2021-02-12T11:25:05-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/tags/processing/</loc>
+    <lastmod>2021-02-12T11:25:05-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/tags/sound/</loc>
+    <lastmod>2021-02-12T11:25:05-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/post/voicerecog/</loc>
+    <lastmod>2021-02-12T11:25:05-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/post/svm/</loc>
+    <lastmod>2021-02-12T11:25:05-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/tags/</loc>
+    <lastmod>2021-02-12T11:25:05-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/post/soundnn/</loc>
+    <lastmod>2021-02-12T11:25:05-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/post/</loc>
+    <lastmod>2017-03-02T12:00:00-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/about/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/categories/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://christosfranco.github.io/Data-Science-Portfolio/contact/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+</urlset>
