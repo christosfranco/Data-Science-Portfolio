@@ -40,11 +40,11 @@
 <meta itemprop="description" content="Principal component analysis applied to kNN and randomfores classification models">
 <meta itemprop="datePublished" content="2021-02-12T11:25:05-04:00" />
 <meta itemprop="dateModified" content="2021-02-12T11:25:05-04:00" />
-<meta itemprop="wordCount" content="304">
+<meta itemprop="wordCount" content="836">
 
 
 
-<meta itemprop="keywords" content="feature analysis," />
+<meta itemprop="keywords" content="feature analysis,classification," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="PCA and classifications"/>
 <meta name="twitter:description" content="Principal component analysis applied to kNN and randomfores classification models"/>
@@ -103,7 +103,7 @@
 
 
 
-<a href="https://linkedin.com/in/christian-arboe-franck" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+<a href="https://linkedin.com/in/christian-arboe-franck/" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
   <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
@@ -200,11 +200,16 @@
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <h1 id="principal-component-analysis">Principal component analysis:</h1>
-<p>Some few tool to analyze the specific impact of each feature, and their impact on the label.
-The tool is applied to a dataset of flowers, where we try to classify which features of the plant correspond to the specific flower.</p>
+<p>Some few tool to analyze the specific impact of each feature, and their impact on the label.</p>
+<p>The tool is applied to a dataset of flowers, where we try to classify which features of the plant correspond to the specific flower.</p>
+<p>We have four features sepal width, sepal length, petal width, and petal length. All are in cm.</p>
+<p>The labels or the flowers we are trying to classify are Iris Setosa (label = 0), Iris Versicolour (label = 1), Iris Virginica (label = 2)</p>
 <h2 id="pca">PCA</h2>
-<p>We only have 4 features in this dataset, so PCA will not be as effective in emiting unneeded features. But if we would have had a far larger dataset with many more features, the calculations we would normally have to do can be widely reduced by the use of PCA.
-In this example we emit the least useful features (The ones that are nessesary to be used in 95% of the cases). We analyze the PCA for the train set and compare how this would be on the validation set. All of the (useless) features are emitted from all the sets (train, validation, test).</p>
+<p>We only have 4 features in this dataset, so PCA will not be as effective in emiting unneeded features. But if we would have had a far larger dataset with many more features, the calculations we would normally have to do can be widely reduced by the use of PCA.</p>
+<p>We analyze the PCA for the train set and compare how this would be on the validation set. All of the (useless) features are emitted from all the sets (train, validation, test).
+In this example we emit the least 2 useful features (The ones that are nessesary to be used in 95% of the cases).</p>
+<p>The two emitted features are sepal width and sepal length.</p>
+<p>The two remaining features are petal width and petal length.</p>
 <figure>
     <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/pca/variancePC.png"/> 
 </figure>
@@ -218,19 +223,50 @@ In this example we emit the least useful features (The ones that are nessesary t
 <p>We use two classification algorithms to classify after we have emitted the features.
 The train set is used to find the most optimal parameters for our models.</p>
 <h3 id="k--nearest-neighbours-knn">k- Nearest Neighbours (kNN)</h3>
-<p>For kNN we find the we can achieve a training accuracy of 100% with 3 neighbours. This is the same for higher number of neighbours, but we do not want to make our model too complicated. This would be computationally inefficient, and we risk that we fit our model too much on our training set. So the simpler the solution the better (Ockham&rsquo;s razor).</p>
+<p>The kNN algorithm works by using nearest points to determine in which group a datapoint should be classified.
+For kNN we find the we can achieve a training accuracy of 100% with 3 neighbours.
+We do this by running our algorithm kNN for a different number of neightbours. For this algorithm it might be feasible as it is only one parameter that we have to optimize, but for algorithms or models with more parameters it will probably be too computationally inefficient to try it for many parameters. The number of combinations of paramets increase exponentially. Random optimizers such as Adam exists to randomize the choice of parameters and parameter combinations to find the near optimal ones.
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/pca/kNN%20parameter.png"/> 
+</figure>
+</p>
+<p>This is the same for higher number of neighbours, but we do not want to make our model too complicated. This would be computationally inefficient, and we risk that we fit our model too much on our training set. So the simpler the solution the better (Ockham&rsquo;s razor).</p>
+<h3 id="random-forest-classification">Random Forest Classification</h3>
+<p>N_estimators is number of decision trees in the forest. More trees mean that we will have higher variance and we might overfit our data to the training set. We expect to see a decrease in the error as we are subdividing the set into smaller and smaller classification sets.</p>
+<p>n_jobs, computation optimization, should only be related on large datasets due to parralel procession overhead. Starting and switching and combining the data on each core takes time, so the process cannot start immediately.
+We will choose not to utilize this feature as we have a very small dataset</p>
+<p>min_sample_split is the number of branches that are split at the end. So at the bottom of the tree (where the leafes are). We will for each branch have two leafes or less when we set this equal to two.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Random forest usually have the downside of favoring high cardinality features, as we branch into many smaller branches unique, and somewhat niche, features will become increasingly weighted on par with the more general features.</p>
+<p>max_depth is how far we go in terms of classifications. If this is set to None we will keep splitting the tree into smaller branches. Eg. if this was set to 3, we would split the initial dataset once and then two times more for each child that we get from the first split.</p>
+<h2 id="predicting-on-test-set">Predicting on Test set</h2>
+<p>We then see how our models fare on our test set by predicting with our model. By predicting we mean that we apply the algorithm with the optimized parameters that we found in the training phase.</p>
+<p>Lets first start by looking at the kNN classifier.
 <figure>
     <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/pca/KNeighborsClassifierpredictionsPCA.jpg"/> 
 </figure>
+</p>
+<p>The classifier seems to divide the datapoints fairly clearly into the different labels. There is one datapoint on the border between green and blue that is question, but it still classifies it correctly.</p>
+<p>Next lets look at the random forest prediction
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/pca/RandomForestClassifierpredictionsPCA.jpg"/> 
+</figure>
 
-<h3 id="random-forest-classification">Random Forest Classification</h3>
-<h2 id="predicting-on-test-set">Predicting on Test set</h2>
-<p>We then see how our models fare on our test set by predicting with our model. By predicting we mean that we apply the algorithm with the optimized parameters that we found in the training phase.</p>
+As with the kNN, the RandomForest correctly classifies all points.</p>
+<p>To compare the two classifiers we find that kNN seems more &ldquo;smooth&rdquo; as opposed to the randomforest.</p>
+<p>Other techniques we could explore in order to better our Randomforest model, could be that we generate multiple random forest and then take the mean of the optimal parameters from these and input them into a final model. This procedure is called Mean Decrease in Impurity (MDI) and can help to smooth out some of the quirkyness that comes with the random forest.</p>
+<!-- raw HTML omitted -->
 <p><a href="https://github.com/christosfranco/modelling-and-visualization/tree/main/PCA-and-Classification">Link to github repo</a></p>
+<p><a href="https://christosfranco.github.io/Data-Science-Portfolio/post/pca/">Go to top</a></p>
 <ul class="pa0">
   
    <li class="list">
      <a href="https://christosfranco.github.io/Data-Science-Portfolio/tags/feature-analysis" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">feature analysis</a>
+   </li>
+  
+   <li class="list">
+     <a href="https://christosfranco.github.io/Data-Science-Portfolio/tags/classification" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">classification</a>
    </li>
   
 </ul>
@@ -244,6 +280,17 @@ The train set is used to find the most optimal parameters for our models.</p>
 
 
 
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="https://christosfranco.github.io/Data-Science-Portfolio/post/svm/">Support vector machine - Linear</a>
+        </li>
+	    
+    </ul>
+</div>
 
 </aside>
 
@@ -263,7 +310,7 @@ The train set is used to find the most optimal parameters for our models.</p>
 
 
 
-<a href="https://linkedin.com/in/christian-arboe-franck" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+<a href="https://linkedin.com/in/christian-arboe-franck/" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
   <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>

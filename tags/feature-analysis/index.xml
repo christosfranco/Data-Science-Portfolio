@@ -13,8 +13,10 @@
       <pubDate>Fri, 12 Feb 2021 11:25:05 -0400</pubDate>
       
       <guid>https://christosfranco.github.io/Data-Science-Portfolio/post/pca/</guid>
-      <description>Principal component analysis: Some few tool to analyze the specific impact of each feature, and their impact on the label. The tool is applied to a dataset of flowers, where we try to classify which features of the plant correspond to the specific flower.
-PCA We only have 4 features in this dataset, so PCA will not be as effective in emiting unneeded features. But if we would have had a far larger dataset with many more features, the calculations we would normally have to do can be widely reduced by the use of PCA.</description>
+      <description>Principal component analysis: Some few tool to analyze the specific impact of each feature, and their impact on the label.
+The tool is applied to a dataset of flowers, where we try to classify which features of the plant correspond to the specific flower.
+We have four features sepal width, sepal length, petal width, and petal length. All are in cm.
+The labels or the flowers we are trying to classify are Iris Setosa (label = 0), Iris Versicolour (label = 1), Iris Virginica (label = 2)</description>
     </item>
     
   </channel>

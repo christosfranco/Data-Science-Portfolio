@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>classification on Main Page</title>
+    <link>https://christosfranco.github.io/Data-Science-Portfolio/tags/classification/</link>
+    <description>Recent content in classification on Main Page</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 12 Feb 2021 11:25:05 -0400</lastBuildDate><atom:link href="https://christosfranco.github.io/Data-Science-Portfolio/tags/classification/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PCA and classifications</title>
+      <link>https://christosfranco.github.io/Data-Science-Portfolio/post/pca/</link>
+      <pubDate>Fri, 12 Feb 2021 11:25:05 -0400</pubDate>
+      
+      <guid>https://christosfranco.github.io/Data-Science-Portfolio/post/pca/</guid>
+      <description>Principal component analysis: Some few tool to analyze the specific impact of each feature, and their impact on the label.
+The tool is applied to a dataset of flowers, where we try to classify which features of the plant correspond to the specific flower.
+We have four features sepal width, sepal length, petal width, and petal length. All are in cm.
+The labels or the flowers we are trying to classify are Iris Setosa (label = 0), Iris Versicolour (label = 1), Iris Virginica (label = 2)</description>
+    </item>
+    
+    <item>
+      <title>Support vector machine - Linear</title>
+      <link>https://christosfranco.github.io/Data-Science-Portfolio/post/svm/</link>
+      <pubDate>Fri, 12 Feb 2021 11:25:05 -0400</pubDate>
+      
+      <guid>https://christosfranco.github.io/Data-Science-Portfolio/post/svm/</guid>
+      <description>Support vector machine is a classification algorithm. The idea behind the algorithm is that it tries to seperate 2 different labeled datasets. Compared to kNN and RandomForest, this is a supervised algorithm. Hence meaning that we use our labeled data to divide/classify our datapoints.
+We divide the dataset utilizing a hyperplane. A hyperplane is a function of degree (Features-1), 2 features will entail a function of degree 1 (a line). 3 features will be a 2 dimensional plane.</description>
+    </item>
+    
+  </channel>
+</rss>

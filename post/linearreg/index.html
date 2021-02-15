@@ -40,7 +40,7 @@
 <meta itemprop="description" content="Linear regression with leave-one-out crossvalidation">
 <meta itemprop="datePublished" content="2021-02-12T11:25:05-04:00" />
 <meta itemprop="dateModified" content="2021-02-12T11:25:05-04:00" />
-<meta itemprop="wordCount" content="96">
+<meta itemprop="wordCount" content="692">
 
 
 
@@ -103,7 +103,7 @@
 
 
 
-<a href="https://linkedin.com/in/christian-arboe-franck" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+<a href="https://linkedin.com/in/christian-arboe-franck/" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
   <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
@@ -197,7 +197,8 @@
       
       
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><!-- raw HTML omitted -->
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p><a href="https://github.com/christosfranco/modelling-and-visualization/tree/main/LinearRegression">Link to github repo</a></p>
+<!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <ul>
 <li>Boston Housing Data - House Price</li>
@@ -205,10 +206,73 @@
 <li>Olympic race data - Time</li>
 <li>Medical Insurance Patients - Cost of Product</li>
 </ul>
-<p>This Project aims to visualize some relations between features and their respective values.
-In the case of the Boston Housing Data, we different features such as: age of the house, infrastructure in area, ecology, as well as other data about the residents.
-For the cross validation: We individually for each feature explore its impact on the House Price. Some have no linear correlation, while others have a very clear correlation.,</p>
+<p>This Project aims to visualize some relations between features and their respective values.</p>
+<p>In the case of the Boston Housing Data, with different features such as: age of the house, infrastructure in area, ecology, as well as other data about the residents.</p>
+<p>To have some indicator of how wrong our predictions are we use the Root Mean Squared Error.</p>
+<h1 id="markdown-code">Markdown code</h1>
+<p>def rmse(t, tp):
+return numpy.sqrt(numpy.mean(numpy.square(numpy.abs(numpy.subtract(t,tp)))))</p>
+<p>Our error indicators for the first feature and for all the features are as such:</p>
+<p>RMSE Single Feature the Column CRIM (per capita crime rate by town): 8.954859906611233</p>
+<p>RMSE All features: 6.21287919995914</p>
+<p>We can see that when we use all the features we get less error in our predictions.</p>
+<p>The plots of the relation between our predictions and our real test values are somewhat better when using all the features. If the predictions and the real values match perfectly they should lie on the straight line.
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/linear/allfeaturesplot.jpg"/> 
+</figure>
+</p>
+<h2 id="cross-validation">Cross Validation</h2>
+<p>Now lets try to look at each features individually and see if we can find a linear relation between them and the label (our house price).</p>
+<p>For cross validation we take out 1 datapoint and evaluate and try to predict the 1 datapoint we took out. We do this for a range of lambda values to see which lambda fits the set best.</p>
+<p>We individually for each feature explore its impact on the House Price. Some have no linear correlation, while others have a very clear correlation.</p>
+<p>For all of the examinations we will use a degree of 4. A degree of 1 means that the data can be explored from two weights (one that influence the feature and one initial, to explain initial conditions at x=0), also indicating that this will be a straight line.</p>
+<p>A degree of 4 means that we will have some wiggle room for our classification, while we still dont have a function that is too complicated.</p>
+<p>We will start with a weighted value of lambda=0, we will explore different values so that we can minimize the error that we get. Our lambda values range from 10^-8 to 1, we explore 100 values equally distributed in this range.</p>
+<p>For example the DIS(weighted distances to five Boston employment centres) feature has a clear linear regression while the</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>There seems to be a clear linear correlation, and we have a clear trend of convergence towards a housing price of 25 k starting at a Distance of 6 km, although we are still rising. At the end we see a dip, this might be due to lack of data. This is clearly not expected although a possible explanation could be that when we are more than 10 kilometers away we are out of the centrum of the city and housing prices might start to fall off.</p>
+<p>Lets try to do some crossvalidation and see whether we can find a more optimal lambda value.
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/linear/DISplot-linearregression.jpg"/> 
+</figure>
+
+We find the optimal lambda parameter by doing crossvalidation on each datapoint, with our range of lambda values
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/linear/DISplot-lambda.jpg"/> 
+</figure>
+
+After we apply the optimal lambda value we see that the graph platous. This is an indicator to us that this feature for x&gt;6 does not have an impact on the house price.
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/linear/DISplot-linearregression-bestlam.jpg"/> 
+</figure>
+</p>
+<p>Lets try to have a look at a different feature, and lets pick one that a negative impact on the housing price.
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/linear/DISplot-linearregression.jpg"/> 
+</figure>
+</p>
+<p>We find that the NOX (nitric oxides concentration in parts per 10 million) has a clear negative effect, although it seem that if we go up to a concentration of 0.9 it starts it rise again.</p>
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/linear/DISplot-linearregression.jpg"/> 
+</figure>
+
+<p>This might be because we overfit to the 3rd or 4th degree. Lets try to optimize the weighted value lambda and see if it favors a lower error on the lower range of nitric oxides values.</p>
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/linear/DISplot-lambda.jpg"/> 
+</figure>
+
+<p>Now lets try to see how our prediction looks like now with the updated lambda.</p>
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/linear/NOXplot-linearregression-bestlam.jpg"/> 
+</figure>
+
+<p>This seems much more feasible. We can see that we have a downwards trend and it is non 1st degree.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p><a href="https://github.com/christosfranco/modelling-and-visualization/tree/main/LinearRegression">Link to github repo</a></p>
+<p><a href="https://christosfranco.github.io/Data-Science-Portfolio/post/linearreg/">Go to top</a></p>
 <ul class="pa0">
   
 </ul>
@@ -241,7 +305,7 @@ For the cross validation: We individually for each feature explore its impact on
 
 
 
-<a href="https://linkedin.com/in/christian-arboe-franck" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+<a href="https://linkedin.com/in/christian-arboe-franck/" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
   <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
