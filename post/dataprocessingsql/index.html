@@ -6,7 +6,7 @@
     
     <title>DataProcessingSQL | Main Page</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Web scrabing articles, processing them to input them into an SQL server">
+    <meta name="description" content="Web scrabing articles, processing them for input in SQL server">
     <meta name="generator" content="Hugo 0.80.0" />
     
     
@@ -31,23 +31,23 @@
     
     
     <meta property="og:title" content="DataProcessingSQL" />
-<meta property="og:description" content="Web scrabing articles, processing them to input them into an SQL server" />
+<meta property="og:description" content="Web scrabing articles, processing them for input in SQL server" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://christosfranco.github.io/Data-Science-Portfolio/post/dataprocessingsql/" />
 <meta property="article:published_time" content="2021-02-12T11:25:05-04:00" />
 <meta property="article:modified_time" content="2021-02-12T11:25:05-04:00" /><meta property="og:site_name" content="Main Page" />
 <meta itemprop="name" content="DataProcessingSQL">
-<meta itemprop="description" content="Web scrabing articles, processing them to input them into an SQL server">
+<meta itemprop="description" content="Web scrabing articles, processing them for input in SQL server">
 <meta itemprop="datePublished" content="2021-02-12T11:25:05-04:00" />
 <meta itemprop="dateModified" content="2021-02-12T11:25:05-04:00" />
-<meta itemprop="wordCount" content="4">
+<meta itemprop="wordCount" content="3575">
 
 
 
 <meta itemprop="keywords" content="processing," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="DataProcessingSQL"/>
-<meta name="twitter:description" content="Web scrabing articles, processing them to input them into an SQL server"/>
+<meta name="twitter:description" content="Web scrabing articles, processing them for input in SQL server"/>
 
 	
   </head>
@@ -185,7 +185,431 @@
       
       
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p><a href="https://github.com/christosfranco/Data-Processing-and-SQL-Analytics">Link to github repo</a></p>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h1 id="know-our-data">{Know our data}</h1>
+<h2 id="the-design-of-the-schema-that-contains-the-data-from-the-fakenews-corpus-data-set">{The design of the schema that contains the data from the FakeNews Corpus data set}</h2>
+<p>In our design of the schema, we have tried to reduce various anomalies as much as possible. We started by cramming all the data into a single relation, but we quickly found out that this created a lot of anomalies. Therefore, we iteratively decomposed this relations until we ended up with the design that can be viewed on figure \ref{fig:er-diagram-fakenews-corpus}. By designing our database this way, we have reduced redundancy, update anomalies, and deletion anomalies significant.</p>
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/FakeNews/ER%20diagram%20Fakenews%20Corpus.png"/> 
+</figure>
+
+<p>The reason why we have a time relation, is that we found out that there are only 5 different timestamps. Therefore, we could remove many anomalies by making it a separate relation. For all the relationships that are one-to-many or many-to-many, we have likewise separated them into their own relations. This includes the following relations: keyword, typ, author, webpage, and domain.</p>
+<p>We have assumed, that no article contains the same content, and no articles contains the same meta_description. We did find out, that some of the articles actually have the same title, so we could reduce anomalies by separating this attribute into its own relation. However, we decided to keep it as an attribute. Since we often use the title, it would make it cumbersome to make a natural join each time we need it.</p>
+<h2 id="inherent-problems-with-the-data-from-the-fakenews-corpus-data-set-during-development">{Inherent problems with the data from the Fakenews Corpus data set during development}</h2>
+<p>We found that some of the data is in the wrong fields, and some of it are not formatted correctly. Furthermore, we also found out that the fields keyword and summary are completely empty for all the articles. For many of the articles, the field called meta_descriptions does not contain anything.</p>
+<p>Another problem we found while working with the data set was that we did not understand the difference between meta_keyword and keyword. We assume that meta_keyword contains the keywords of the articles. Likewise, we did not understand the difference between meta_description and summary. Here we assume that meta_description contains a summary of the articles.</p>
+<p>Another problem with the data set is that there are two different IDs. The first ID is the unnamed field, which repeats itself after 100000 articles. The second ID, which is called id in the csv file, is quite random. Because of these two problems we create our own article_id instead of using the id&rsquo;s that were provided.</p>
+<h2 id="properties-on-the-fakenews-corpus-data-set">{Properties on the Fakenews Corpus data set}</h2>
+<p>The queries that we have used to get the statistics and visualizations, that can be seen below, can also be found in \hyperref[Appendix A]{Appendix A}.
+\vspace*{-\baselineskip}
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.4\textwidth}
+From this table, one can see that our database contains a lot of articles.
+\end{subfigure}%
+\begin{subfigure}{.6\textwidth}
+\centering
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}\cline{1-2}
+\multicolumn{2}{|c|}{Basic statistics}    \cline{1-2}
+\hline\hline
+Number of articles                      &amp;  999992   \cline{1-2}
+Avg. number of keywords per article     &amp;  6.96     \cline{1-2}
+Avg. number of words per article        &amp;  271.32   \cline{1-2}
+\end{tabular}
+\end{table}
+\end{subfigure}
+\end{figure}</p>
+<p>In the figure \ref{fig:fake1} below, one can see that the database does not contain a lot of reliable articles. It is also possible to observe that the distribution is not uniform. These two properties of the data set can create difficulties when we have to train our model for the predictor.</p>
+<p>Our initial thought was that clickbait articles would contain a lot of keywords since they could be used to oversell the articles but this is not the case as can be seen in the figure \ref{fig:fake6}.</p>
+<p><figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/FakeNews/Figure_1.png"/> 
+</figure>
+
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/FakeNews/Figure_6.png"/> 
+</figure>
+</p>
+<p>From figure \ref{fig:fake2} below, one can see that approximately $40%$ of the articles comes from the three domains: <a href="dailykos.com">dailykos</a>, <a href="wikileaks.org">wikileaks</a>, and
+<a href="beforeitsnews.com">beforeitsnews</a>. If these three sites are labeled wrong, all the articles from these three domains are labeled wrong, which will have a huge impact on our predictor.</p>
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/FakeNews/Figure_2.png"/> 
+</figure>
+
+<p>In \hyperref[Apendix B]{Apendix B} it is possible to see more statistics that we found interesting.</p>
+<h2 id="experiences-with-scraping-from-the-politics-and-conflict-section-of-the-wikinews-site">{Experiences with scraping from the &ldquo;Politics and Conflict&rdquo; section of the Wikinews site}</h2>
+<p>We started with the approach of using all the start urls on the form of:
+\begin{verbatim}
+<a href="https://en.wikinews.org/w/index.php?title=Category:Politics_and_conflicts&amp;from=">https://en.wikinews.org/w/index.php?title=Category:Politics_and_conflicts&amp;from=</a><!-- raw HTML omitted -->
+\end{verbatim}, where \verb+<!-- raw HTML omitted -->+ is [D-N]. The downside of this was, that not all articles was on their start letter page. This meant that some F articles was on another page, and was thus not included. Furthermore we got some articles from other letters. We solved this by checking for WantedArticles = r&quot;/wiki/[D-N]&quot;.</p>
+<p>The next approach was to yield the parse() on itself when going to next page and starting on the D page. The spider would thus crawl to nextpage until it reached the letter O.</p>
+<p>Extracting the specific information from each article was a bit of a hassle. Some articles' content are structured in tables while over $90%$ have their content in paragraphs.</p>
+<h2 id="the-design-of-the-schema-that-contains-the-data-from-the-wikinews-fragment-data-set">{The design of the schema that contains the data from the Wikinews Fragment data set}</h2>
+<p>We have designed the schema that contains the data from the Wikinews Fragment data set, more or less, like how we designed the schema, that contains the data from the Fakenews Corpus data set. The only differences between the Fakenews Corpus schema design, and this Wikinews Fragment schema design, is that we do not have a meta_description attribute. We do not have an updated_at or inserted_at date, but instead we have a written_at date, and that the articles do not have any authors but they instead have sources. The picture of the E/R diagram can be found in \hyperref[Wikinews ER diagram]{Appendix C}.</p>
+<h2 id="basic-properties-of-the-wikinews-fragment-data-set">{Basic properties of the Wikinews Fragment data set}</h2>
+<p>In the table below, one can see that our Wikinews Fragment does not contain a lot of articles. However, since they are all classified as reliable, if we combine these with our Fakenews Corpus data set, we get approximately $50%$ more reliable articles than was contained in the Fakenews Corpus data set.
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+From the statistics in the table, we can also observe, that the articles are quite small. We can also see, that the average number of words per article is 176, compared to 271 which was the average number of words per article in the Fakenews Corpus data set.
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+\centering
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}\cline{1-2}
+\multicolumn{2}{|c|}{Basic statistics}    \cline{1-2}
+\hline\hline
+Number of articles                      &amp;  2747         \cline{1-2}
+Avg. number of keywords per article     &amp;  9.51         \cline{1-2}
+Avg. number of words per article        &amp;  176.89       \cline{1-2}
+\end{tabular}
+\end{table}
+\end{subfigure}
+\end{figure}</p>
+<p>In figure \ref{fig:distribution1} we can observe that distribution of when the articles were published is not uniform. We can see that the vast majority of the articles are from before 2009.</p>
+<p>In figure \ref{fig:distribution2} we can see that we could cut the length of the content of the articles to 500 words and get the vast majority of the data. This could be a good idea to reduce the use of memory and computation.</p>
+<p><figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/FakeNews/wikinews/Figure_1_wiki.png"/> 
+</figure>
+
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/FakeNews/wikinews/Figure_2_wiki.png"/> 
+</figure>
+</p>
+<h2 id="integration-of-the-fakenews-corpus-data-set-and-wikinews-fragment-data-set">{Integration of the Fakenews Corpus data set and Wikinews Fragment data set}</h2>
+<p>The sql command that creates the view can be found at \hyperref[sql-command to create view]{Appendix E}. We have tried to get as much of the meta data integrated in this view as possible.</p>
+<p>In the view each article has the following attributes: content, title, type, domain, and url. We could have included scraped_at, but we thought that it is not very useful in regards to our predictor. We decided to not include the information that is represented as many-to-many relationships such as keywords since that would blow up the size of the view.</p>
+<p>Our view contains 1002602 articles.</p>
+<h2 id="choosing-a-dataset">{Choosing a dataset}</h2>
+<p>Since our predictor cannot be trained on more than 50k articles, and the Fakenews Corpus dataset contains around 6000 reliable articles, in order to get a balanced training set, we are not able to include the Wikinews Fragment dataset. Furthermore the classification used to determine all wikinews articles as being reliable does not have any merit to back it up. If we had access to better machines, it would not be a problem to use the view described in ##  1.7 that contains both data sets.</p>
+<h2 id="classification-into-fake-and-real">{Classification into fake and real}</h2>
+<p>We will classify the articles that are reliable or political as real, and all other  articles of the other types as fake. The reasoning behind this, is that we would rather have fake negatives than fake positives. Considering the majority of the article types as being fake, will grant us a better insurance that we do not falsely classify fake content as being real. There is either a clear malicious intent (hate, click-bait, fake), or unintended false, or unjustified content (junk-science, satire, conspiracy, unreliable). Content that is considered in the fakenewscorpus as &ldquo;on the line&rdquo; will be classified as fake as well (unknown, bias).</p>
+<h1 id="establish-a-baseline">{Establish a baseline}</h1>
+<h2 id="basic-models-on-content">{Basic models on content}</h2>
+<p>\begin{figure}[H]
+\centering
+\begin{subfigure}{.6\textwidth}
+In our baseline model we will use a TF-IDF vectorizer to structure the words and their frequency compared to the general frequency of all the training articles. We utilize 457828 article contents and we use two baseline models: a linear SVC, and a Dummy classifier. By the use of these two models we get the results described in this table.
+\end{subfigure}%
+\begin{subfigure}{.4\textwidth}
+\centering
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}\cline{1-4}
+&amp; Liar  &amp; Fakenews &amp; Kaggle  \cline{1-4}
+LinearSVC &amp; 0.514 &amp; 0.78     &amp; 0.648   \cline{1-4}
+Dummy     &amp; 0.499 &amp; 0.501    &amp;         \cline{1-4}
+\end{tabular}
+\end{table}
+\end{subfigure}
+\end{figure}</p>
+<h2 id="including-additional-fields">{Including additional fields}</h2>
+<p>In the beginning we thought it could make sense to use keywords. However, a problem with this is that a lot of the articles in our database do not have any keywords.</p>
+<p>It might make sense to use the title of the article as a feature. Although, it is short and we expect that more distinct information is found in the content. However, the title in of itself could be used to determine whether an article is a clickbait.</p>
+<p>We decide overall that these features from meta-data would not contribute to the general performance of a model.</p>
+<h1 id="create-a-fake-news-predictor">{Create a Fake News predictor}</h1>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>We started creating a predictor using a Neural Network, where we got amazing results (approximately 92%) when we tested it on the Fakenews Corpus data set. Although, when we used our model on the Kaggle data set we got an accuracy of approximately 50% which is quite bad. We were not able to fix the reason for this, so we decided to move on to create a model based on a pre-trained Bert model.</p>
+<p>It is very possible that our pre-trained embedding matrix skewed the bias in the favor of our Fakenews Corpus data set. The fault is not caused by data, only consisting, or being largely based, of either fake or real articles. If this was the case it would be likely that the NN would just always guess on fake or real, as this gives a good accuracy. It would probably be due to over-fitting.</p>
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/FakeNews/NNresults.png"/> 
+</figure>
+
+<p>Using the Bert-uncased-base pre-trained library we worked on creating a better model. Using a relative small amount of training articles, 1000. And a test set of 100. Running 10 epochs of this procedure gives some good results, although it is doing quite worse on real (0) compared to fake (1).</p>
+<p>\begin{figure}[H]
+\centering
+\includegraphics[width=5cm]{1000train.png}
+\caption{Acceptable results after training with a small dataset. }
+\label{fig:my_label}
+\end{figure}</p>
+<p>The model consists of the Bert-base-uncased, running through a dropout layer, to try to ensure that all nodes have impact going further (it is turned off during evaluation, so that all parameters are considered here). Then we run this through a 768 to 1 node linear layer. Finally we use a Sigmoid function to ensure that we have an output 0 to 1 (as we are trying to make a binary classifier).
+The data is structured as required by the Bert model, having sequences of length 128.<br>
+Training the model we use content from 50k articles, and 10k for testing. We use the Adam optimizer with a learning rate of 3e-5, and a batch-size of 32. The reason for this is that a GPU with RAM 12GB cannot handle more with sequence lengths of 128.</p>
+<p>\begin{figure}[H]
+\noindent\begin{minipage}[t]{.5\textwidth}
+\centering
+\includegraphics[width=.8\linewidth]{1epoch.png}
+\caption{10 epochs after training with a big dataset, gives good results}
+\label{fig:test1}
+\end{minipage}%
+\noindent\begin{minipage}[t]{.5\textwidth}
+\centering
+\includegraphics[width=.8\linewidth]{20 epochs.PNG}
+\caption{Even better results doing 20 epochs}
+\label{fig:test2}
+\end{minipage}%
+\end{figure}</p>
+<h1 id="performance-beyond-the-original-dataset">{Performance beyond the original dataset}</h1>
+<p>%maybe use stem words to improve accuracy</p>
+<h2 id="evaluating-our-predictor-on-dataset---kaggle">{Evaluating our predictor on dataset - Kaggle}</h2>
+<p>%We have set up a friendly competition between the groups. The idea is that we provide a dataset <em>without</em> labels (CSV format, two columns: ID,text), and that you all use your model to try to predict the labels. You will then upload a file with the ID and the labels (CSV format: two columns: ID, &ldquo;REAL&rdquo; or &ldquo;FAKE&rdquo;). We will then compare your predictions against the true labels and create an online leaderboard where you can see your rank compared to the other groups. The leaderboard is hosted as a Kaggle competition accessible here: <a href="https://www.kaggle.com/c/ds2020">https://www.kaggle.com/c/ds2020</a> (Links to an external site.). You can also find the test data set there. Please don&rsquo;t try to reverse-engineer the source of the data we provide, in order to download and train on it (we will be able to tell).
+In Kaggle we use team name &lsquo;test&rsquo; and leader name &lsquo;ChrFKaggle&rsquo;.
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{kagglefinal.png}
+\caption{Our final result, after training on the bert pre-trained model, with Fakenewscorpus dataset.}
+\label{fig:my_label}
+\end{figure}</p>
+<h2 id="evaluate-our-predictor-on-liar-dataset">{Evaluate our predictor on LIAR dataset}</h2>
+<p>%In order to allow you to play around cross-domain performance locally as well, try the same exercise on the LIAR dataset (<a href="https://www.cs.ucsb.edu/~william/data/liar_dataset.zip">https://www.cs.ucsb.edu/~william/data/liar_dataset.zip</a> (Links to an external site.)), where you know the labels, and can thus immediately calculate the performance.
+Training on the fakenewscorpus dataset and testing on the liar dataset we get an accuracy of 0.55, from test.tsv.</p>
+<h2 id="comparing-results-to-our-fake-news-predictor">{Comparing results to our Fake News predictor}</h2>
+<p>%Compare the results of these two experiments to the results you obtained in question 3. Report both your LIAR results and the leaderboard results as part of your report. Remember to test the performance of your baseline model as well.
+As we would expect the results in question 3, have a better accuracy, compared to Kaggle and Liar.</p>
+<p>\begin{table}[H]
+\begin{tabular}{|l|l|l|l|}\cline{1-4}
+&amp; Liar  &amp; Fakenews Test &amp; Kaggle  \cline{1-4}
+LinearSVC &amp; 0.514 &amp; 0.78     &amp; 0.648   \cline{1-4}
+Dummy     &amp; 0.499 &amp; 0.501    &amp;         \cline{1-4}
+Fake News Predictor &amp; 0.55 &amp; 0.89 &amp; 0.77  \cline{1-4}
+\end{tabular}
+\end{table}
+When comparing the Fake News predictor to our Baseline, we can see that it does better on all the sets.</p>
+<h1 id="discussion">{Discussion}</h1>
+<p>%Conclude your report by discussing the results you obtained</p>
+<h2 id="discussion-on-performance-between-fakenews-set-and-test-sets">{Discussion on performance between fakenews set and test sets}</h2>
+<p>%Explain the discrepancy between the performance on your test set and on the LIAR set and leaderboard. If relevant, use visualizations or statistics to point out differences in the datasets.
+The test results on the liar set were quite worse compared to our results on kaggle and fakenewscorpus test set.
+The kaggle set is quite similar in the lengths of the articles, while the liar dataset have extremely small article sizes.</p>
+<p>\begin{figure}[H]
+\begin{minipage}[t]{.33\textwidth}
+\centering
+\includegraphics[width=1\linewidth]{liar (1).png}
+\caption[width=.8\linewidth]{Liar test set; where mean length of articles is $\approx$20}
+\label{fig:test1}
+\end{minipage}%
+\begin{minipage}[t]{.33\textwidth}
+\centering
+\includegraphics[width=1\linewidth]{kaggle (1).png}
+\caption{Kaggle test set; has articles of length far greater than the two other test sets. With a mean length of $\approx$900 words.}
+\label{fig:test2}
+\end{minipage}
+\begin{minipage}[t]{.33\textwidth}
+\centering
+\includegraphics[width=1\linewidth]{fake.PNG}
+\caption{Fakenews test set; where the mean length of articles is $\approx$ 300 words.}
+\label{fig:test2}
+\end{minipage}
+\end{figure}
+This difference in article length could have a great impact of classifying the articles. Even the Fake News Predictor is largely based on sequences of words, and if those sequence cant even be filled it wont make much of a difference in the way the article is classified.</p>
+<h2 id="further-thoughts-and-conclusion">{Further thoughts and conclusion}</h2>
+<p>%Conclude with describing overall lessons learned during the project, for instance considering questions like: Does the discrepancy between performance on different data sets surprise you? What can be done to improve the performance of Fake News prediction? Will further progress be driven primarily by better models or by better data? Is it even a solvable problem?
+The performance between the kaggle set and the liar test set surprised us at first. But, when we analyzed the length of the articles in both data sets, it became clearer why the performances were so different. This problem would require a predictor, that resembles the sentences/articles lengths, or maybe we could even use other meta-data from the articles. Classifying an article solely on a few words, that bears the resemblance of a title, requires another type of model. To get the best predictions, the test set must have roughly the same shape (same properties, such as the length of an article&rsquo;s content) as the training set. It was not a surprise, that the performance on the kaggle set was lower compared to the Fakenews Corpus data set. Apart from the fact that, the kaggle articles are roughly three times the length of articles from the Fakenews Corpus data set, there are some other obvious differences. One other important difference is what people perceive as fake news and real news. This difference would have a significant effect on the predictor&rsquo;s results. If the classification for what is real and fake was roughly the same, we would expect that the predictor would achieve better results. The main difference here, would be if the classifier for what is real, in the kaggle set, includes political articles (in the sense of political in the eyes the Fakenews Corpus data set). If the Kaggle set perceives political articles as being fake, the fake news predictor would be expected to perform worse. Considering these suggestions for bettering the predictor, there will always be differences in datasets and classifications that will hinder the performance of such models.</p>
+<h1 id="appendices">{Appendices}</h1>
+<h2 id="appendix-a---sql-queries-to-get-the-properties-of-the-fakenews-corpus-data-set">{Appendix A - SQL queries to get the properties of the Fakenews Corpus data set}</h2>
+<p>\label{Appendix A}</p>
+<h3 id="number-of-articles">{Number of articles:}</h3>
+<p>\begin{minted}{postgresql}
+SELECT count(*)
+FROM fakenewscorpus.article;
+\end{minted}</p>
+<p>\vskip 5mm</p>
+<h3 id="the-average-number-of-keywords-for-each-article">{The average number of keywords for each article:}</h3>
+<p>\begin{minted}{postgresql}
+SELECT Avg(keyword_count) AS avg_keyword_count
+FROM
+(SELECT article_id,
+Count(*) AS keyword_count
+FROM fakenewscorpus.tags GROUP  BY article_id) AS tmpTable
+NATURAL JOIN fakenewscorpus.article;
+\end{minted}</p>
+<p>\vskip 5mm</p>
+<h3 id="the-average-number-of-words-for-each-article">{The average number of words for each article:}</h3>
+<p>\begin{minted}{postgresql}
+SELECT avg(word_count) AS avg_word_count
+FROM
+(SELECT length(content) - length(replace(content, ' &lsquo;, &lsquo;')) AS word_count
+FROM fakenewscorpus.article) AS tmpTable;
+\end{minted}</p>
+<p>\vskip 5mm</p>
+<h3 id="distribtuion-of-articles-over-types">{Distribtuion of articles over types:}</h3>
+<p>\begin{minted}{postgresql}
+SELECT count(*),
+type_name
+FROM fakenewscorpus.article
+NATURAL JOIN fakenewscorpus.typ
+GROUP BY type_name
+ORDER BY COUNT DESC;
+\end{minted}</p>
+<p>\vskip 5mm</p>
+<h3 id="the-20-domains-with-the-most-articles-scraped-from">{The 20 domains with the most articles scraped from:}</h3>
+<p>\begin{minted}{postgresql}
+SELECT count(*),
+domain_url,
+type_name
+FROM fakenewscorpus.article
+NATURAL JOIN fakenewscorpus.webpage
+NATURAL JOIN fakenewscorpus.domain
+NATURAL JOIN fakenewscorpus.typ
+GROUP BY domain_url,
+type_name
+ORDER BY COUNT DESC
+LIMIT 20;
+\end{minted}</p>
+<p>\vskip 5mm</p>
+<h3 id="the-average-content-length-of-the-articles-of-each-type">{The average content length of the articles of each type:}</h3>
+<p>\begin{minted}{postgresql}
+SELECT type_name,
+avg(content_length) AS avg_content_length
+FROM
+(SELECT article_id,
+title,
+length(content) AS content_length,
+type_id
+FROM fakenewscorpus.Article) AS tmpTable
+NATURAL JOIN fakenewscorpus.typ
+GROUP BY type_name
+ORDER BY avg_content_length DESC;
+\end{minted}</p>
+<p>\vskip 5mm</p>
+<h3 id="the-average-number-of-words-of-the-articles-of-each-type">{The average number of words of the articles of each type:}</h3>
+<p>\begin{minted}{postgresql}
+SELECT type_name,
+avg(word_count) AS avg_word_count
+FROM
+(SELECT article_id,
+length(replace(content, ' &lsquo;, &lsquo;')) AS content_length_no_spaces,
+length(content) - length(replace(content, ' &lsquo;, &lsquo;')) AS word_count,
+type_id
+FROM fakenewscorpus.Article) AS tmpTable
+NATURAL JOIN fakenewscorpus.typ
+GROUP BY type_name
+ORDER BY avg_word_count DESC;
+\end{minted}</p>
+<p>\vskip 5mm</p>
+<h3 id="the-average-word-length-of-the-articles-of-each-type">{The average word length of the articles of each type:}</h3>
+<p>\begin{minted}{postgresql}
+SELECT type_name,
+avg(content_length_no_spaces) / avg(word_count) AS avg_word_length
+FROM
+(SELECT article_id,
+length(replace(content, ' &lsquo;, &lsquo;')) AS content_length_no_spaces,
+length(content) - length(replace(content, ' &lsquo;, &lsquo;')) AS word_count,
+type_id
+FROM fakenewscorpus.Article) AS tmpTable
+NATURAL JOIN fakenewscorpus.typ
+GROUP BY type_name
+ORDER BY avg_word_length DESC;
+\end{minted}</p>
+<p>\vskip 5mm</p>
+<h3 id="the-average-number-of-keywords-of-the-articles-of-each-type">{The average number of keywords of the articles of each type:}</h3>
+<p>\begin{minted}{postgresql}
+SELECT type_name,
+Avg(keyword_count) AS avg_keyword_count
+FROM   (SELECT article_id,
+Count(*) AS keyword_count
+FROM   fakenewscorpus.tags
+GROUP  BY article_id) AS tmpTable
+natural JOIN fakenewscorpus.article
+natural JOIN fakenewscorpus.typ
+GROUP  BY type_name
+ORDER  BY avg_keyword_count DESC;
+\end{minted}</p>
+<h2 id="appendix-b---more-properties-on-the-fakenews-corpus-data-set">{Appendix B - More properties on the Fakenews Corpus data set}</h2>
+<p>\label{Apendix B}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{FakenewsCorpus/Figure_3.png}
+\caption[]{}
+\label{fig:fake3}
+\end{figure}</p>
+<p>\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{FakenewsCorpus/Figure_4.png}
+\caption[]{}
+\label{fig:fake4}
+\end{figure}</p>
+<p>\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{FakenewsCorpus/Figure_5.png}
+\caption[]{}
+\label{fig:fake5}
+\end{figure}</p>
+<h2 id="apendix-c---er-diagram-of-the-wikinews-fragment-data-set">{Apendix C - E/R diagram of the Wikinews Fragment data set}</h2>
+<p>\label{Wikinews ER diagram}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.90\textwidth]{WikinewsFragment/ER diagram Wikinews Fragment.png}
+\caption{An E/R diagram of our database design.}
+\label{fig:er-diagram-wikinews-fragment}
+\end{figure}</p>
+<h2 id="appendix-d---sql-queries-to-get-the-properties-of-the-wikinews-fragment-data-set">Appendix D - SQL queries to get the properties of the Wikinews Fragment data set}</h2>
+<h3 id="number-of-articles-1">{Number of articles:}</h3>
+<p>\begin{minted}{postgresql}
+SELECT count(*)
+FROM wikinewsfragment.article;
+\end{minted}</p>
+<p>\vskip 5mm</p>
+<h3 id="the-distribution-of-the-number-of-articles-over-dates">{The distribution of the number of articles over dates:}</h3>
+<p>\begin{minted}{postgresql}
+SELECT count(*),
+time
+FROM wikinewsfragment.article
+INNER JOIN wikinewsfragment.time ON wikinewsfragment.article.written_at_time_id = wikinewsfragment.time.time_id
+GROUP BY time
+ORDER BY COUNT DESC;
+\end{minted}</p>
+<p>\vskip 5mm</p>
+<h3 id="the-average-minimum-and-maximum-number-of-keywords-for-each-article">{The average, minimum, and maximum number of keywords for each article:}</h3>
+<p>\begin{minted}{postgresql}
+SELECT Avg(keyword_count) AS avg_keyword_count,
+Min(keyword_count) AS min_keyword_count,
+Max(keyword_count) AS max_keyword_count
+FROM
+(SELECT article_id,
+Count(*) AS keyword_count
+FROM wikinewsfragment.tags GROUP  BY article_id) AS tmpTable
+NATURAL JOIN wikinewsfragment.article;
+\end{minted}</p>
+<p>\vskip 5mm</p>
+<h3 id="the-number-of-distribution-of-the-articles-with-a-specific-number-of-words">{The number of distribution of the articles with a specific number of words:}</h3>
+<p>\begin{minted}{postgresql}
+SELECT word_count,
+count(*)
+FROM
+(SELECT length(content) - length(replace(content, ' &lsquo;, &lsquo;')) AS word_count
+FROM wikinewsfragment.article) AS tmpTable
+GROUP BY word_count
+ORDER BY word_count;
+\end{minted}</p>
+<p>\vskip 5mm</p>
+<h3 id="the-average-minimum-and-maximum-number-of-words-for-each-article">{The average, minimum, and maximum number of words for each article:}</h3>
+<p>\begin{minted}{postgresql}
+SELECT avg(word_count) AS avg_word_count,
+min(word_count) AS min_word_count,
+max(word_count) AS max_word_count
+FROM
+(SELECT length(content) - length(replace(content, ' &lsquo;, &lsquo;')) AS word_count
+FROM wikinewsfragment.article) AS tmpTable;
+\end{minted}</p>
+<h2 id="appendix-e---query-to-create-the-view-that-integrates-the-two-date-sets">{Appendix E - Query to create the view that integrates the two date sets}</h2>
+<p>\label{sql-command to create view}
+\begin{minted}{postgresql}
+CREATE MATERIALIZED VIEW integrateFakenewsSources AS
+(SELECT title,
+type_name,
+content,
+url,
+domain_url
+FROM wikinewsfragment.article
+NATURAL JOIN wikinewsfragment.typ
+NATURAL JOIN wikinewsfragment.webpage
+NATURAL JOIN wikinewsfragment.domain)
+UNION ALL
+(SELECT title,
+type_name,
+content,
+url,
+domain_url
+FROM fakenewscorpus.article
+NATURAL JOIN fakenewscorpus.typ
+NATURAL JOIN fakenewscorpus.webpage
+NATURAL JOIN fakenewscorpus.domain);
+\end{minted}</p>
+<p>[MarcusTM linkedin][https://linkedin.com/in/marcus-mathiesen]</p>
+<p><a href="https://github.com/christosfranco/Data-Processing-and-SQL-Analytics">Link to github repo</a></p>
 <ul class="pa0">
   
    <li class="list">

@@ -13,7 +13,7 @@
       <pubDate>Fri, 12 Feb 2021 11:25:05 -0400</pubDate>
       
       <guid>https://christosfranco.github.io/Data-Science-Portfolio/post/dataprocessingsql/</guid>
-      <description>Link to github repo</description>
+      <description>{Know our data} {The design of the schema that contains the data from the FakeNews Corpus data set} In our design of the schema, we have tried to reduce various anomalies as much as possible. We started by cramming all the data into a single relation, but we quickly found out that this created a lot of anomalies. Therefore, we iteratively decomposed this relations until we ended up with the design that can be viewed on figure \ref{fig:er-diagram-fakenews-corpus}.</description>
     </item>
     
   </channel>
