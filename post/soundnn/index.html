@@ -40,7 +40,7 @@
 <meta itemprop="description" content="Analyzing sounds that are common in an urban enviroment and training a model for recognizing different labeled sounds.">
 <meta itemprop="datePublished" content="2021-02-12T11:25:05-04:00" />
 <meta itemprop="dateModified" content="2021-02-12T11:25:05-04:00" />
-<meta itemprop="wordCount" content="11">
+<meta itemprop="wordCount" content="91">
 
 
 
@@ -187,6 +187,56 @@
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p><a href="https://github.com/christosfranco/Data-Processing-and-SQL-Analytics">Link to github repo</a></p>
 <p><a href="https://www.kaggle.com/chrfkaggle/urban-sounds">Link to kaggle repo</a></p>
+<p><a href="https://urbansounddataset.weebly.com/urbansound8k.html#10foldCV">Link To Dataset</a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/soundUrban/soundbitess.png"/> 
+</figure>
+
+<h1 id="neural-network-model">Neural Network model</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3">    num_labels <span style="color:#f92672">=</span> yy<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">1</span>]
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">build_model_graph</span>(input_shape<span style="color:#f92672">=</span>(n_mfcc,)):
+        model <span style="color:#f92672">=</span> Sequential()
+        model<span style="color:#f92672">.</span>add(Dense(<span style="color:#ae81ff">256</span>))
+        model<span style="color:#f92672">.</span>add(Activation(<span style="color:#e6db74">&#39;relu&#39;</span>))
+        model<span style="color:#f92672">.</span>add(Dropout(<span style="color:#ae81ff">0.5</span>))
+        model<span style="color:#f92672">.</span>add(Dense(<span style="color:#ae81ff">256</span>))
+        model<span style="color:#f92672">.</span>add(Activation(<span style="color:#e6db74">&#39;relu&#39;</span>))
+        model<span style="color:#f92672">.</span>add(Dropout(<span style="color:#ae81ff">0.5</span>))
+        model<span style="color:#f92672">.</span>add(Dense(num_labels))
+        model<span style="color:#f92672">.</span>add(Activation(<span style="color:#e6db74">&#39;softmax&#39;</span>))
+        <span style="color:#75715e"># Compile the model</span>
+        model<span style="color:#f92672">.</span>compile(loss<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;categorical_crossentropy&#39;</span>, metrics<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;accuracy&#39;</span>], optimizer<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;adam&#39;</span>)    
+        <span style="color:#66d9ef">return</span> model
+    model <span style="color:#f92672">=</span> build_model_graph()</code></pre></div>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3">    <span style="color:#75715e">#Play a sound from the dataset</span>
+    sound_file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/kaggle/input/urbansounds/UrbanSound8K/audio/&#39;</span>
+    <span style="color:#66d9ef">for</span> index, row <span style="color:#f92672">in</span> df_unequal<span style="color:#f92672">.</span>iterrows():
+        slice_name <span style="color:#f92672">=</span> row[<span style="color:#e6db74">&#39;file_name&#39;</span>]
+        
+        name<span style="color:#f92672">=</span> sound_file<span style="color:#f92672">+</span>slice_name
+        
+        print(<span style="color:#e6db74">&#34;Name of file: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74"> , Predicted to be: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74"> , Real Value: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74"> &#34;</span><span style="color:#f92672">.</span>format(slice_name , row[<span style="color:#e6db74">&#39;preds&#39;</span>] ,row[<span style="color:#e6db74">&#39;class_labels&#39;</span>]))
+        
+        input(ipd<span style="color:#f92672">.</span>display(ipd<span style="color:#f92672">.</span>Audio(name,autoplay<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)))
+        clear_output(wait<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)</code></pre></div>
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/soundUrban/acclossplot.png"/> 
+</figure>
+
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/soundUrban/acc.png"/> 
+</figure>
+
+<figure>
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/soundUrban/combined.png"/> 
+</figure>
+
+<p><a href="https://github.com/christosfranco/Data-Processing-and-SQL-Analytics">Link to github repo</a></p>
+<p><a href="https://www.kaggle.com/chrfkaggle/urban-sounds">Link to kaggle repo</a></p>
+<p><a href="https://urbansounddataset.weebly.com/urbansound8k.html#10foldCV">Link To Dataset</a></p>
 <p><a href="https://christosfranco.github.io/Data-Science-Portfolio/post/soundnn/">Go to top</a></p>
 <ul class="pa0">
   
@@ -213,21 +263,6 @@
 
 
 
-
-  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
-    <p class="f5 b mb3">Related</p>
-    <ul class="pa0 list">
-	   
-	     <li  class="mb2">
-          <a href="https://christosfranco.github.io/Data-Science-Portfolio/post/voicerecog/">Speaker and Word recognizer</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="https://christosfranco.github.io/Data-Science-Portfolio/post/metropolis-hastings/">Metropolis-Hastings-algorithm.py</a>
-        </li>
-	    
-    </ul>
-</div>
 
 </aside>
 

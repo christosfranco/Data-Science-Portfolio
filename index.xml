@@ -28,15 +28,6 @@ In the case of the Boston Housing Data, with different features such as: age of 
     </item>
     
     <item>
-      <title>Metropolis-Hastings-algorithm.py</title>
-      <link>https://christosfranco.github.io/Data-Science-Portfolio/post/metropolis-hastings/</link>
-      <pubDate>Fri, 12 Feb 2021 11:25:05 -0400</pubDate>
-      
-      <guid>https://christosfranco.github.io/Data-Science-Portfolio/post/metropolis-hastings/</guid>
-      <description>Go to top</description>
-    </item>
-    
-    <item>
       <title>PCA and classifications</title>
       <link>https://christosfranco.github.io/Data-Science-Portfolio/post/pca/</link>
       <pubDate>Fri, 12 Feb 2021 11:25:05 -0400</pubDate>
@@ -46,15 +37,6 @@ In the case of the Boston Housing Data, with different features such as: age of 
 The tool is applied to a dataset of flowers, where we try to classify which features of the plant correspond to the specific flower.
 We have four features sepal width, sepal length, petal width, and petal length. All are in cm.
 The labels or the flowers we are trying to classify are Iris Setosa (label = 0), Iris Versicolour (label = 1), Iris Virginica (label = 2)</description>
-    </item>
-    
-    <item>
-      <title>Speaker and Word recognizer</title>
-      <link>https://christosfranco.github.io/Data-Science-Portfolio/post/voicerecog/</link>
-      <pubDate>Fri, 12 Feb 2021 11:25:05 -0400</pubDate>
-      
-      <guid>https://christosfranco.github.io/Data-Science-Portfolio/post/voicerecog/</guid>
-      <description>Link to github repo Link to kaggle training repo Link to kaggle feature extraction repo</description>
     </item>
     
     <item>
@@ -75,7 +57,8 @@ We divide the dataset utilizing a hyperplane. A hyperplane is a function of degr
       <guid>https://christosfranco.github.io/Data-Science-Portfolio/post/soundnn/</guid>
       <description>Link to github repo
 Link to kaggle repo
-Go to top</description>
+Link To Dataset
+  Neural Network model num_labels = yy.shape[1] def build_model_graph(input_shape=(n_mfcc,)): model = Sequential() model.add(Dense(256)) model.add(Activation(&amp;#39;relu&amp;#39;)) model.add(Dropout(0.5)) model.add(Dense(256)) model.add(Activation(&amp;#39;relu&amp;#39;)) model.add(Dropout(0.5)) model.add(Dense(num_labels)) model.add(Activation(&amp;#39;softmax&amp;#39;)) # Compile the model model.compile(loss=&amp;#39;categorical_crossentropy&amp;#39;, metrics=[&amp;#39;accuracy&amp;#39;], optimizer=&amp;#39;adam&amp;#39;) return model model = build_model_graph() #Play a sound from the dataset sound_file = &amp;#39;/kaggle/input/urbansounds/UrbanSound8K/audio/&amp;#39; for index, row in df_unequal.iterrows(): slice_name = row[&amp;#39;file_name&amp;#39;] name= sound_file+slice_name print(&amp;#34;Name of file: {}, Predicted to be: {}, Real Value: {}&amp;#34;.</description>
     </item>
     
     <item>

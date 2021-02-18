@@ -45,13 +45,6 @@
   </url>
   
   <url>
-    <loc>https://christosfranco.github.io/Data-Science-Portfolio/post/metropolis-hastings/</loc>
-    <lastmod>2021-02-12T11:25:05-04:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://christosfranco.github.io/Data-Science-Portfolio/tags/neural-network/</loc>
     <lastmod>2021-02-12T11:25:05-04:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -74,13 +67,6 @@
   
   <url>
     <loc>https://christosfranco.github.io/Data-Science-Portfolio/tags/sound/</loc>
-    <lastmod>2021-02-12T11:25:05-04:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://christosfranco.github.io/Data-Science-Portfolio/post/voicerecog/</loc>
     <lastmod>2021-02-12T11:25:05-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
