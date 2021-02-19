@@ -247,19 +247,15 @@ After we apply the optimal lambda value we see that the graph platous. This is a
     <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/linear/DISplot-linearregression-bestlam.jpg"/> 
 </figure>
 </p>
-<p>Lets try to have a look at a different feature, and lets pick one that a negative impact on the housing price.
-<figure>
-    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/linear/DISplot-linearregression.jpg"/> 
-</figure>
-</p>
+<p>Lets try to have a look at a different feature, and lets pick one that a negative impact on the housing price.</p>
 <p>We find that the NOX (nitric oxides concentration in parts per 10 million) has a clear negative effect, although it seem that if we go up to a concentration of 0.9 it starts it rise again.</p>
 <figure>
-    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/linear/DISplot-linearregression.jpg"/> 
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/linear/NOXplot-linearregression.jpg"/> 
 </figure>
 
 <p>This might be because we overfit to the 3rd or 4th degree. Lets try to optimize the weighted value lambda and see if it favors a lower error on the lower range of nitric oxides values.</p>
 <figure>
-    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/linear/DISplot-lambda.jpg"/> 
+    <img src="https://christosfranco.github.io/Data-Science-Portfolio/images/linear/NOXplot-lambda.jpg"/> 
 </figure>
 
 <p>Now lets try to see how our prediction looks like now with the updated lambda.</p>
