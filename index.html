@@ -188,7 +188,8 @@
             </a>
         </h1>
         <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          {Know our data} {The design of the schema that contains the data from the FakeNews Corpus data set} In our design of the schema, we have tried to reduce various anomalies as much as possible. We started by cramming all the data into a single relation, but we quickly found out that this created a lot of anomalies. Therefore, we iteratively decomposed this relations until we ended up with the design that can be viewed on figure \ref{fig:er-diagram-fakenews-corpus}.
+          Link to github repo
+Know our data The design of the schema that contains the data from the FakeNews Corpus data set In our design of the schema, we have tried to reduce various anomalies as much as possible. We started by cramming all the data into a single relation, but we quickly found out that this created a lot of anomalies. Therefore, we iteratively decomposed this relations until we ended up with the design that can be viewed on figure \ref{fig:er-diagram-fakenews-corpus}.
         </div>
           <a href="https://christosfranco.github.io/Data-Science-Portfolio/post/dataprocessingsql/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
         
@@ -281,8 +282,9 @@ The labels or the flowers we are trying to classify are Iris Setosa (label = 0),
             </a>
         </h1>
         <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          Support vector machine is a classification algorithm. The idea behind the algorithm is that it tries to seperate 2 different labeled datasets. Compared to kNN and RandomForest, this is a supervised algorithm. Hence meaning that we use our labeled data to divide/classify our datapoints.
-We divide the dataset utilizing a hyperplane. A hyperplane is a function of degree (Features-1), 2 features will entail a function of degree 1 (a line). 3 features will be a 2 dimensional plane.
+          Link to github repo
+The Support Vector Machine Support vector machine is a classification algorithm. The idea behind the algorithm is that it tries to seperate 2 different labeled datasets. Compared to kNN and RandomForest, this is a supervised algorithm. Hence meaning that we use our labeled data to divide/classify our datapoints.
+We divide the dataset utilizing a hyperplane. A hyperplane is a function of degree (Features-1), 2 features will entail a function of degree 1 (a line).
         </div>
           <a href="https://christosfranco.github.io/Data-Science-Portfolio/post/svm/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
         
@@ -309,7 +311,7 @@ We divide the dataset utilizing a hyperplane. A hyperplane is a function of degr
           Link to github repo
 Link to kaggle repo
 Link To Dataset
-  Neural Network model num_labels = yy.shape[1] def build_model_graph(input_shape=(n_mfcc,)): model = Sequential() model.add(Dense(256)) model.add(Activation(&#39;relu&#39;)) model.add(Dropout(0.5)) model.add(Dense(256)) model.add(Activation(&#39;relu&#39;)) model.add(Dropout(0.5)) model.add(Dense(num_labels)) model.add(Activation(&#39;softmax&#39;)) # Compile the model model.compile(loss=&#39;categorical_crossentropy&#39;, metrics=[&#39;accuracy&#39;], optimizer=&#39;adam&#39;) return model model = build_model_graph() #Play a sound from the dataset sound_file = &#39;/kaggle/input/urbansounds/UrbanSound8K/audio/&#39; for index, row in df_unequal.iterrows(): slice_name = row[&#39;file_name&#39;] name= sound_file+slice_name print(&#34;Name of file: {}, Predicted to be: {}, Real Value: {}&#34;.
+Data exploration The dataset we want to analyze consists of different soundbites each of length 1 second containing the highest intensity in a larger soundbite. The dataset has sounds such as a dog barking, children playing, car horn, and streetmusic. Lets have a look and see how the different kinds of sounds look like in comparison to one another.
         </div>
           <a href="https://christosfranco.github.io/Data-Science-Portfolio/post/soundnn/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
         
